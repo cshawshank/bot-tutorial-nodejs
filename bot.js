@@ -14,7 +14,7 @@ function respond() {
     likeMessage(request.group_id, request.id);
     this.res.end();
   } else {
-    console.log("don't care");
+    console.log("ignoring: " + request.sender_id + " | " + request.group_id + " | " + request.id + " | " + request.text);
     this.res.writeHead(200);
     this.res.end();
   }
