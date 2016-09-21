@@ -2,12 +2,15 @@ var HTTPS = require('https');
 var botID = process.env.BOT_ID;
 
 function respond() {
-  var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/robot purpose$/;
+  var request = JSON.parse(this.req.chunks[0]), botRegex = /^@robotcasey$/;
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
     postMessage();
+    this.res.end();
+  } else if(request.sender_id == '25279382') {
+    this.res.writeHead(200);
+    likeMessage(request.group_id, request.id);
     this.res.end();
   } else {
     console.log("don't care");
@@ -49,6 +52,34 @@ function postMessage() {
     console.log('timeout posting message '  + JSON.stringify(err));
   });
   botReq.end(JSON.stringify(body));
+}
+
+function likeMessage(conversation_id, message_id) {
+  var options, body, botReq;
+
+  options = {
+    hostname: 'api.groupme.com',
+    path: '/v3/messages/' + conversation_id + '/' + message_id + /like',
+    method: 'POST'
+  };
+
+  console.log('liking convesation: ' + conversation_id + ' message: ' + message_id);
+
+  botReq = HTTPS.request(options, function(res) {
+      if(res.statusCode == 200) {
+        //neat
+      } else {
+        console.log('rejecting bad status code ' + res.statusCode);
+      }
+  });
+
+  botReq.on('error', function(err) {
+    console.log('error posting message '  + JSON.stringify(err));
+  });
+  botReq.on('timeout', function(err) {
+    console.log('timeout posting message '  + JSON.stringify(err));
+  });
+  botReq.end();
 }
 
 
