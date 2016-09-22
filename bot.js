@@ -12,9 +12,9 @@ function respond() {
     this.res.writeHead(200);
     postMessage("Sorry, I'm busy liking Quintin's posts.");
     this.res.end();
-  } else if(request.text && request.text.indexOf("Trump") != -1) {
+  } else if(request.text && request.text.indexOf("Donald Trump") != -1) {
     this.res.writeHead(200);
-    postMessage("Trumps know the best posts. Beautiful posts. Huge posts.");
+    postMessage("Trump know the best posts. Beautiful posts. Huge posts.");
     this.res.end();
   } else {
     console.log("ignoring: " + request.sender_id + " | " + request.group_id + " | " + request.id + " | " + request.text);
