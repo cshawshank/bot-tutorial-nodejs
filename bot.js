@@ -18,7 +18,7 @@ function respond() {
     postMessage("Trump know the best posts. Beautiful posts. Huge posts.");
     this.res.end();
   } else {
-    console.log("ignoring: " + request.sender_id + " | " + request.group_id + " | " + request.id + " | " + request.text);
+    console.log("ignoring: " + request.sender_id + " | " + request.group_id + " | " + request.id + " | " + caseyToken);
     this.res.writeHead(200);
     this.res.end();
   }
