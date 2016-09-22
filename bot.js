@@ -1,5 +1,6 @@
 var HTTPS = require('https');
 var botID = process.env.BOT_ID;
+var caseyToken = process.env.TOKEN;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
@@ -61,7 +62,7 @@ function likeMessage(conversation_id, message_id) {
 
   options = {
     hostname: 'api.groupme.com',
-    path: '/v3/messages/' + conversation_id + '/' + message_id + '/like',
+    path: '/v3/messages/' + conversation_id + '/' + message_id + '/like?token=' + caseyToken,
     method: 'POST'
   };
 
