@@ -1,24 +1,21 @@
 var HTTPS = require('https');
 var botID = process.env.BOT_ID;
-var caseyToken = process.env.TOKEN;
+var my_token = process.env.TOKEN;
+var friend_id = process.env.TOKEN;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
 
-  if(request.sender_id == '25279382') {
+  if(request.sender_id == friend_id) {
     this.res.writeHead(200);
     likeMessage(request.group_id, request.id);
     this.res.end();
-  } else if(request.text && request.text.indexOf("robotcasey") != -1) {
+  } else if(request.text && request.text.indexOf("@robotcasey") != -1) {
     this.res.writeHead(200);
-    postMessage("Sorry, I'm busy liking Quintin's posts.");
-    this.res.end();
-  } else if(request.text && request.text.indexOf("Donald Trump") != -1) {
-    this.res.writeHead(200);
-    postMessage("Trump know the best posts. Beautiful posts. Huge posts.");
+    postMessage("Sorry, I was only built to like Quintin's posts.");
     this.res.end();
   } else {
-    console.log("ignoring: " + request.sender_id + " | " + request.group_id + " | " + request.id + " | " + caseyToken);
+    console.log("ignoring this request");
     this.res.writeHead(200);
     this.res.end();
   }
