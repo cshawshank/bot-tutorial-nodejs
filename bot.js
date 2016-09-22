@@ -10,7 +10,11 @@ function respond() {
     this.res.end();
   } else if(request.text && request.text.indexOf("robotcasey") != -1) {
     this.res.writeHead(200);
-    postMessage();
+    postMessage("Sorry, I'm busy liking Quintin's posts.");
+    this.res.end();
+  } else if(request.text && request.text.indexOf("Trump") != -1) {
+    this.res.writeHead(200);
+    postMessage("Trumps know the best posts. Beautiful posts. Huge posts.");
     this.res.end();
   } else {
     console.log("ignoring: " + request.sender_id + " | " + request.group_id + " | " + request.id + " | " + request.text);
@@ -19,10 +23,8 @@ function respond() {
   }
 }
 
-function postMessage() {
-  var botResponse, options, body, botReq;
-
-  botResponse = "Sorry, I'm busy liking Quintin's posts.";
+function postMessage(botResponse) {
+  var options, body, botReq;
 
   options = {
     hostname: 'api.groupme.com',
