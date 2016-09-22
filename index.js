@@ -28,5 +28,5 @@ server.listen(port);
 
 function ping() {
   this.res.writeHead(200);
-  this.res.end("My only purpose is to like Quintin's posts.");
+  this.res.end("OK");
 }
