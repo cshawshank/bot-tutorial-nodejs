@@ -5,13 +5,13 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var botRegex = /^robotcasey$/;
 
-  if(request.text && botRegex.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage();
-    this.res.end();
-  } else if(request.sender_id == '25279382') {
+  if(request.sender_id == '25279382') {
     this.res.writeHead(200);
     likeMessage(request.group_id, request.id);
+    this.res.end();
+  } else if(request.text && request.text.indexOf("robotcasey") != -1) {
+    this.res.writeHead(200);
+    postMessage();
     this.res.end();
   } else {
     console.log("ignoring: " + request.sender_id + " | " + request.group_id + " | " + request.id + " | " + request.text);
