@@ -1,7 +1,7 @@
 var HTTPS = require('https');
 var botID = process.env.BOT_ID;
 var my_token = process.env.TOKEN;
-var friend_id = process.env.TOKEN;
+var friend_id = process.env.FRIEND_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
