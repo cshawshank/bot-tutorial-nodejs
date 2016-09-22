@@ -59,7 +59,7 @@ function likeMessage(conversation_id, message_id) {
 
   options = {
     hostname: 'api.groupme.com',
-    path: '/v3/messages/' + conversation_id + '/' + message_id + '/like?token=' + caseyToken,
+    path: '/v3/messages/' + conversation_id + '/' + message_id + '/like?token=' + my_token,
     method: 'POST'
   };
 
