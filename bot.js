@@ -14,14 +14,6 @@ function respond() {
     this.res.writeHead(200);
     postMessage("Sorry, I was only built to like Quintin's posts.");
     this.res.end();
-  } else if(request.text && request.text.indexOf("funnier? Matt or Brittney?") != -1) {
-    this.res.writeHead(200);
-    postMessage("I'm going to say Brittney, because i'm more afraid of what she'll do to me if i don't.");
-    this.res.end();
-  } else if(request.text && request.text.indexOf("Nora.") != -1) {
-    this.res.writeHead(200);
-    postMessage("I love Nora! Is she sleeping? Is she a loud snora?");
-    this.res.end();
   } else {
     console.log("ignoring this request");
     this.res.writeHead(200);
