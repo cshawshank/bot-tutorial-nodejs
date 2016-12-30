@@ -12,7 +12,6 @@ function analyzeSentimentOfText(text) {
   .then((results) => {
     const sentiment = results[0];
     console.log(`Text: ${text}`);
-    console.log(`Sentiment: ${sentiment}`);
     console.log(`Sentiment Result: ${sentiment >= 0 ? 'positive' : 'negative'}.`);
     return sentiment;
   });
@@ -34,11 +33,13 @@ function respond() {
       this.res.end();
     } else if(request.text && request.text.length > 0){
       console.log("before");
-      analyzeSentimentOfText(request.text);
+      var sentresult = analyzeSentimentOfText(request.text);
+      if(sentresult >= 0) {      
+        this.res.writeHead(200);
+        likeMessage(request.group_id, request.id);
+        this.res.end();
+      }
       console.log("after");
-      this.res.writeHead(200);
-      likeMessage(request.group_id, request.id);
-      this.res.end();
     } else {
       console.log("ignoring this request");
       this.res.writeHead(200);
