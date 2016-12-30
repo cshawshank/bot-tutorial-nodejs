@@ -34,7 +34,7 @@ function respond() {
       this.res.end();
     } else if(request.text && request.text.length > 0){
       console.log("before");
-      this.analyzeSentimentOfText(request.text);
+      analyzeSentimentOfText(request.text);
       console.log("after");
       this.res.writeHead(200);
       likeMessage(request.group_id, request.id);
