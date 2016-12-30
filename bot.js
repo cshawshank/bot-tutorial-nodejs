@@ -7,7 +7,6 @@ var google_api_key = process.env.GOOGLE_API_KEY;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   
-  console.log("attachments1: " +  JSON.parse(request.attachments));
   console.log("attachments2: " +  JSON.stringify(request.attachments));
 
   if(request.sender_id != friend_id) {
