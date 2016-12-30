@@ -19,7 +19,6 @@ function analyzeSentimentOfText(text) {
       return sentiment;
     });
 }
-// [END language_sentiment_string]
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
