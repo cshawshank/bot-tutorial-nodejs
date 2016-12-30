@@ -38,14 +38,21 @@ function respond() {
       this.res.end();
     } else if(request.text && request.text.length > 0){
       console.log("before");
-      /*
-      var sentresult = analyzeSentimentOfText(request.text);
-      if(sentresult >= 0) {      
-        this.res.writeHead(200);
-        likeMessage(request.group_id, request.id);
-        this.res.end();
-      }
-      */      
+      
+      analyzeSentimentOfText(request.text, function(err, data) {
+        if(err) {
+          console.log('Unknown Error');
+          return;
+        }
+        console.log("Data: " + data);
+        /*
+        if(sentresult >= 0) {      
+          this.res.writeHead(200);
+          likeMessage(request.group_id, request.id);
+          this.res.end();
+        }
+        */
+      }); 
     } else {
       console.log("ignoring this request");
       this.res.writeHead(200);
