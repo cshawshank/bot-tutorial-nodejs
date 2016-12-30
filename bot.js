@@ -27,7 +27,7 @@ function analyzeSentimentOfText(text, request, res2) {
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
 
-  if(request.sender_id != 12345) {
+  if(request.sender_id != friend_id) {
     if(request.text && (request.text.indexOf("@robotcasey") != -1 || request.text.indexOf("@caseyrobot") != -1)) {
       this.res.writeHead(200);
       postMessage("Sorry, I was only built to like postitive posts and all attachments.");
