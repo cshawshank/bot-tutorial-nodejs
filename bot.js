@@ -4,6 +4,23 @@ var my_token = process.env.TOKEN;
 var friend_id = process.env.FRIEND_ID;
 var google_api_key = process.env.GOOGLE_API_KEY;
 
+const Language = require('@google-cloud/language');
+const Storage = require('@google-cloud/storage');
+
+function analyzeSentimentOfText(text) {
+  const language = Language();
+  const document = language.document({content: text});
+
+  // Detects the sentiment of the document
+  return document.detectSentiment()
+    .then((results) => {
+      const sentiment = results[0];
+      console.log(`Sentiment: ${sentiment >= 0 ? 'positive' : 'negative'}.`);
+      return sentiment;
+    });
+}
+// [END language_sentiment_string]
+
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   
@@ -19,6 +36,9 @@ function respond() {
       likeMessage(request.group_id, request.id);
       this.res.end();
     } else if(request.text && request.text.length > 0){
+      console.log("before");
+      this.analyzeSentimentOfText(request.text);
+      console.log("after");
       this.res.writeHead(200);
       likeMessage(request.group_id, request.id);
       this.res.end();
