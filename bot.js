@@ -10,9 +10,9 @@ function respond() {
     this.res.writeHead(200);
     likeMessage(request.group_id, request.id);
     this.res.end();
-  } else if(request.text && request.text.indexOf("@robotcasey") != -1) {
+  } else if(request.text && (request.text.indexOf("@robotcasey") != -1 || request.text.indexOf("@caseyrobot") != -1)) {
     this.res.writeHead(200);
-    postMessage("Sorry, I was only built to like Quintin's posts.");
+    postMessage("Sorry, I was only built to like (what i deem) postitive sentiment posts and all pictures.");
     this.res.end();
   } else {
     console.log("ignoring this request");
