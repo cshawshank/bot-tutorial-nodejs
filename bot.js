@@ -2,6 +2,7 @@ var HTTPS = require('https');
 var botID = process.env.BOT_ID;
 var my_token = process.env.TOKEN;
 var friend_id = process.env.FRIEND_ID;
+var google_api_key = process.env.GOOGLE_API_KEY;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
