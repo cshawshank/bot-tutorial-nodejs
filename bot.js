@@ -7,13 +7,18 @@ var google_project_id = process.env.GOOGLE_PROJECT_ID;
 const Language = require('@google-cloud/language');
 const languageClient = Language({projectId: google_project_id});
 
-function analyzeSentimentOfText(text) {  
-  return languageClient.detectSentiment(text)
+function analyzeSentimentOfText(text, group_id, id) {  
+  languageClient.detectSentiment(text, group_id, id)
   .then((results) => {
     const sentiment = results[0];
     console.log(`Text: ${text}`);
     console.log(`Sentiment Result: ${sentiment >= 0 ? 'positive' : 'negative'}.`);
-    return sentiment;
+    if(sentresult >= 0) {      
+      this.res.writeHead(200);
+      likeMessage(group_id, id);
+      this.res.end();
+    }
+    console.log("after");
   });
 }
 
@@ -33,13 +38,14 @@ function respond() {
       this.res.end();
     } else if(request.text && request.text.length > 0){
       console.log("before");
+      /*
       var sentresult = analyzeSentimentOfText(request.text);
       if(sentresult >= 0) {      
         this.res.writeHead(200);
         likeMessage(request.group_id, request.id);
         this.res.end();
       }
-      console.log("after");
+      */      
     } else {
       console.log("ignoring this request");
       this.res.writeHead(200);
