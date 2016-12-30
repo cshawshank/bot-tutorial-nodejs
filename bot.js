@@ -2,7 +2,7 @@ var HTTPS = require('https');
 var botID = process.env.BOT_ID;
 var my_token = process.env.TOKEN;
 var friend_id = process.env.FRIEND_ID;
-var google_api_key = process.env.GOOGLE_API_KEY;
+var google_api_key = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 
 const Language = require('@google-cloud/language');
 const languageClient = Language({projectId: google_api_key});
