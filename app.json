@@ -2,5 +2,6 @@
   "name": "Groupme NLP bot",
   "description": "Groupme Bot with NLP capabilities written in Node JS",
   "repository": "https://github.com/cshawshank/groupme-nlp-nodejs-bot",
+  "logo": "https://d3sq5bmi4w5uj1.cloudfront.net/images/brochure/og_image_poundie.png?1481107817",
   "keywords": []
 }
