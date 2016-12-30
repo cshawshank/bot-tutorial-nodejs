@@ -7,13 +7,23 @@ var google_project_id = process.env.GOOGLE_PROJECT_ID;
 const Language = require('@google-cloud/language');
 const languageClient = Language({projectId: google_project_id});
 
-function analyzeSentimentOfText(text) {  
-  return languageClient.detectSentiment(text)
-  .then((results) => {
-    const sentiment = results[0];
+function analyzeSentimentOfText(text, request) {  
+  console.log("before2");
+  languageClient.detectSentiment(text)
+  .then((result1) => {
+    const sentiment = result1[0];
     console.log(`Text: ${text}`);
     console.log(`Sentiment Result: ${sentiment >= 0 ? 'positive' : 'negative'}.`);
     return sentiment;
+  })
+  .then((result2) => {
+    console.log("before3");
+    if(result2 >= 0) {      
+      this.res.writeHead(200);
+      likeMessage(request.group_id, request.id);
+      this.res.end();
+    }
+    console.log("after3");
   });
 }
 
@@ -32,21 +42,9 @@ function respond() {
       likeMessage(request.group_id, request.id);
       this.res.end();
     } else if(request.text && request.text.length > 0){
-      console.log("before");
-      
-      analyzeSentimentOfText(request.text, function(err, data) {
-        if(err) {
-          console.log('Unknown Error');
-          return;
-        }
-        console.log("Data: " + data);
-        if(data >= 0) {      
-          this.res.writeHead(200);
-          likeMessage(request.group_id, request.id);
-          this.res.end();
-        }
-        console.log("after");
-      }); 
+      console.log("before");      
+      analyzeSentimentOfText(request.text, request);
+      console.log("after1");
     } else {
       console.log("ignoring this request");
       this.res.writeHead(200);
