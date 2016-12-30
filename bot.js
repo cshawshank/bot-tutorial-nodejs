@@ -8,11 +8,16 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   
   console.log("attachments: " +  JSON.stringify(request.attachments));
+  console.log("attachments length: " +  request.attachments.length);
 
   if(request.sender_id != friend_id) {
     if(request.text && (request.text.indexOf("@robotcasey") != -1 || request.text.indexOf("@caseyrobot") != -1)) {
       this.res.writeHead(200);
       postMessage("Sorry, I was only built to like (what i deem) postitive sentiment posts and all pictures.");
+      this.res.end();
+    } else if(request.attachments.length > 0) {
+      this.res.writeHead(200);
+      likeMessage(request.group_id, request.id);
       this.res.end();
     } else {
       this.res.writeHead(200);
