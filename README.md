@@ -1,22 +1,21 @@
-# Sample GroupMe NodeJS Callback Bot
+# GroupMe NodeJS Bot
 
 ## Introduction
 
-This project shows the capability of a bot to react to messages sent within a group.
+This project utilizes a groupme bot and to identify a text sentiments and perform a like action on positive posts
 
 ## Contents
 
   * [Quickly get our sample bot up and running in your groups](#deploy)
+    * Create a groupme bot
+    * Initialize a Google NLP API
+    * Configure your bot's credentials
     * Deploy the code to heroku
-    * Create a bot
-    * Configure to your bot's credentials
-  * [Make changes to the bot](#pull)
-    * Pull the code down to your local machine
-    * Configure the local environment variables to your bot's credentials
 
 ## Requirements:
 
   * GroupMe account
+  * Google NLP API account
   * Heroku account
   * [Heroku Toolbelt](https://toolbelt.heroku.com/)
 
