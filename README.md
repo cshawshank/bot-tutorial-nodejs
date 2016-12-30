@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project utilizes a groupme bot and to identify a text sentiments and perform a like action on positive posts
+This project utilizes a groupme bot  to identify text sentiments in posts and perform a like action if the sentiment is positive
 
 ## Contents
 
