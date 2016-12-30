@@ -7,7 +7,7 @@ var google_project_id = process.env.GOOGLE_PROJECT_ID;
 const Language = require('@google-cloud/language');
 const languageClient = Language({projectId: google_project_id});
 
-function analyzeSentimentOfText(text, request) {  
+function analyzeSentimentOfText(text, request, res2) {  
   console.log("before2");
   languageClient.detectSentiment(text)
   .then((result1) => {
@@ -18,14 +18,14 @@ function analyzeSentimentOfText(text, request) {
   })
   .then((result2) => {
     console.log("before3");
-    console.log("request: " + request.group_id);
+    console.log("result2: " + result2);
     if(result2 >= 0) {      
       console.log("before4");
-      this.res.writeHead(200);
+      res2.writeHead(200);
       console.log("before5");
       likeMessage(request.group_id, request.id);
       console.log("before6");
-      this.res.end();
+      res2.end();
     }
     console.log("after3");
   });
@@ -45,7 +45,7 @@ function respond() {
       this.res.end();
     } else if(request.text && request.text.length > 0){
       console.log("before");      
-      analyzeSentimentOfText(request.text, request);
+      analyzeSentimentOfText(request.text, request, this.res);
       console.log("after1");
     } else {
       console.log("ignoring this request");
