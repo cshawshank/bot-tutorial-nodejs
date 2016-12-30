@@ -8,7 +8,7 @@ const Language = require('@google-cloud/language');
 const languageClient = Language({projectId: google_project_id});
 
 function analyzeSentimentOfText(text) {  
-  languageClient.detectSentiment(text)
+  return languageClient.detectSentiment(text)
   .then((results) => {
     const sentiment = results[0];
     console.log(`Text: ${text}`);
