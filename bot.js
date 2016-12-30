@@ -5,15 +5,20 @@ var friend_id = process.env.FRIEND_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
+  
+  console.log("message from :" + request.sender_id);
+  console.log("message :" + request.text);
 
-  if(request.sender_id == friend_id) {
-    this.res.writeHead(200);
-    likeMessage(request.group_id, request.id);
-    this.res.end();
-  } else if(request.text && (request.text.indexOf("@robotcasey") != -1 || request.text.indexOf("@caseyrobot") != -1)) {
-    this.res.writeHead(200);
-    postMessage("Sorry, I was only built to like (what i deem) postitive sentiment posts and all pictures.");
-    this.res.end();
+  if(request.sender_id != friend_id) {
+    if(request.text && (request.text.indexOf("@robotcasey") != -1 || request.text.indexOf("@caseyrobot") != -1)) {
+      this.res.writeHead(200);
+      postMessage("Sorry, I was only built to like (what i deem) postitive sentiment posts and all pictures.");
+      this.res.end();
+    } else {
+      this.res.writeHead(200);
+      likeMessage(request.group_id, request.id);
+      this.res.end();
+    }
   } else {
     console.log("ignoring this request");
     this.res.writeHead(200);
