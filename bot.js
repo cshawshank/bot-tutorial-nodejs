@@ -5,19 +5,17 @@ var friend_id = process.env.FRIEND_ID;
 var google_api_key = process.env.GOOGLE_API_KEY;
 
 const Language = require('@google-cloud/language');
-const Storage = require('@google-cloud/storage');
+const languageClient = Language({projectId: google_api_key});
 
-function analyzeSentimentOfText(text) {
-  const language = Language();
-  const document = language.document({content: text});
-
-  // Detects the sentiment of the document
-  return document.detectSentiment()
-    .then((results) => {
-      const sentiment = results[0];
-      console.log(`Sentiment: ${sentiment >= 0 ? 'positive' : 'negative'}.`);
-      return sentiment;
-    });
+function analyzeSentimentOfText(text) {  
+  return languageClient.detectSentiment(text)
+  .then((results) => {
+    const sentiment = results[0];
+    console.log(`Text: ${text}`);
+    console.log(`Sentiment: ${sentiment}`);
+    console.log(`Sentiment Result: ${sentiment >= 0 ? 'positive' : 'negative'}.`);
+    return sentiment;
+  });
 }
 
 function respond() {
