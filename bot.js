@@ -30,7 +30,7 @@ function respond() {
       this.res.writeHead(200);
       postMessage("Sorry, I was only built to like postitive posts and all attachments.");
       this.res.end();
-  } else if(request.sender_id != friend_id) {
+  } else if(request.sender_id != friend_id && request.sender_id != botID) {
     if(request.attachments.length > 0) {
       this.res.writeHead(200);
       likeMessage(request.group_id, request.id);
