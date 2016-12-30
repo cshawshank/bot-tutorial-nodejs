@@ -18,9 +18,13 @@ function analyzeSentimentOfText(text, request) {
   })
   .then((result2) => {
     console.log("before3");
+    console.log("request: " + request.group_id);
     if(result2 >= 0) {      
+      console.log("before4");
       this.res.writeHead(200);
+      console.log("before5");
       likeMessage(request.group_id, request.id);
+      console.log("before6");
       this.res.end();
     }
     console.log("after3");
@@ -29,8 +33,6 @@ function analyzeSentimentOfText(text, request) {
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
-  
-  console.log("text length: " +  request.text.length);
 
   if(request.sender_id != 12345) {
     if(request.text && (request.text.indexOf("@robotcasey") != -1 || request.text.indexOf("@caseyrobot") != -1)) {
