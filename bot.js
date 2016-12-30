@@ -6,8 +6,9 @@ var friend_id = process.env.FRIEND_ID;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   
-  console.log("message from :" + request.sender_id);
-  console.log("message :" + request.text);
+  console.log("message from: " + request.sender_id);
+  console.log("message: " + request.text);
+  console.log("attachments: " + request.attachments);
 
   if(request.sender_id != friend_id) {
     if(request.text && (request.text.indexOf("@robotcasey") != -1 || request.text.indexOf("@caseyrobot") != -1)) {
