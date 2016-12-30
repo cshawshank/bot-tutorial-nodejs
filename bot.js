@@ -23,7 +23,7 @@ function respond() {
   
   console.log("text length: " +  request.text.length);
 
-  if(request.sender_id != friend_id) {
+  if(request.sender_id != 12345) {
     if(request.text && (request.text.indexOf("@robotcasey") != -1 || request.text.indexOf("@caseyrobot") != -1)) {
       this.res.writeHead(200);
       postMessage("Sorry, I was only built to like postitive posts and all attachments.");
