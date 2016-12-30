@@ -9,16 +9,16 @@ This project utilizes a groupme bot and to identify a text sentiments and perfor
   * Create a groupme bot
   * Initialize a Google NLP API
   * Configure your bot's credentials
-  * Deploy the code to heroku
+  * Deploy the code
 
 ## Requirements:
 
-  * GroupMe account
+  * GroupMe BOT account
   * Google NLP API account
   * Heroku account
-  * [Heroku Toolbelt](https://toolbelt.heroku.com/)
+  * Heroku Toolbelt
 
-# Get your bot up and running<a name="deploy"></a>
+# Get your bot up and running
 
 ## Deploy to Heroku:
 
