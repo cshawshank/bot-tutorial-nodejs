@@ -7,15 +7,15 @@ var google_project_id = process.env.GOOGLE_PROJECT_ID;
 const Language = require('@google-cloud/language');
 const languageClient = Language({projectId: google_project_id});
 
-function analyzeSentimentOfText(text, request, res2) {  
+function analyzeSentimentOfText(text, request2, res2) {  
   languageClient.detectSentiment(text)
-  .then((result1) => {
-    const sentiment = result1[0];
+  .then((results) => {
+    const sentiment = results[0];
     console.log(`Text: ${text}`);
     console.log(`Sentiment Result: ${sentiment >= 0 ? 'positive' : 'negative'}.`);
-    if(result1 >= 0) {      
+    if(sentiment >= 0) {      
       res2.writeHead(200);
-      likeMessage(request.group_id, request.id);
+      likeMessage(request2.group_id, request2.id);
       res2.end();
     }
   });
@@ -63,9 +63,7 @@ function postMessage(botResponse) {
   console.log('sending ' + botResponse + ' to ' + botID);
 
   botReq = HTTPS.request(options, function(res) {
-      if(res.statusCode == 202) {
-        //neat
-      } else {
+      if(res.statusCode != 202) {
         console.log('rejecting bad status code ' + res.statusCode);
       }
   });
@@ -91,9 +89,7 @@ function likeMessage(conversation_id, message_id) {
   console.log('liking convesation: ' + conversation_id + ' message: ' + message_id);
 
   botReq = HTTPS.request(options, function(res) {
-      if(res.statusCode == 200) {
-        //neat
-      } else {
+      if(res.statusCode != 200) {
         console.log('rejecting bad status code ' + res.statusCode);
       }
   });
