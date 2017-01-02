@@ -13,11 +13,11 @@ function analyzeSentimentOfText(text, request2, res2) {
     const sentiment = results[0];
     console.log(`Text: ${text}`);
     console.log(`Sentiment Result: ${sentiment >= 0 ? 'positive' : 'negative'}.`);
-    if(sentiment >= 0) {      
-      res2.writeHead(200);
+    res2.writeHead(200);
+    if(sentiment >= 0) {
       likeMessage(request2.group_id, request2.id);
-      res2.end();
     }
+    res2.end();
   });
 }
 
