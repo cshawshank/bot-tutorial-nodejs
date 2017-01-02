@@ -77,6 +77,37 @@ function postMessage(botResponse) {
   botReq.end(JSON.stringify(body));
 }
 
+function getPreviousMessages(conversation_id, message_id, limit) {
+  var options, body, botReq;
+
+  options = {
+    hostname: 'api.groupme.com',
+    path: '/v3/groups/' + conversation_id + '/messages?token=' + my_token,
+    method: 'POST'
+  };
+  
+  body = {
+    "before_id" : message_id,
+    "limit" : limit
+  };
+  
+  console.log('getting previous conversations: ' + conversation_id + ' with limit: ' + limit);
+
+  botReq = HTTPS.request(options, function(res) {
+      if(res.statusCode != 200) {
+        console.log('rejecting bad status code ' + res.statusCode);
+      }
+  });
+
+  botReq.on('error', function(err) {
+    console.log('error posting message '  + JSON.stringify(err));
+  });
+  botReq.on('timeout', function(err) {
+    console.log('timeout posting message '  + JSON.stringify(err));
+  });
+  botReq.end(JSON.stringify(body));
+}
+
 function likeMessage(conversation_id, message_id) {
   var options, body, botReq;
 
@@ -102,6 +133,5 @@ function likeMessage(conversation_id, message_id) {
   });
   botReq.end();
 }
-
 
 exports.respond = respond;
