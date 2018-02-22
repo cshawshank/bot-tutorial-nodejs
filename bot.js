@@ -69,7 +69,7 @@ function postMessage(botResponse) {
 
   botReq = HTTPS.request(options, function(res) {
       if(res.statusCode != 202) {
-        console.log('rejecting bad status code ' + res.statusCode);
+        console.log('rejecting bad status code 1: ' + res.statusCode);
       }
   });
 
@@ -100,7 +100,7 @@ function getPreviousMessages(conversation_id, message_id, limit) {
 
   botReq = HTTPS.request(options, function(res) {
       if(res.statusCode != 200) {
-        console.log('rejecting bad status code ' + res.statusCode);
+        console.log('rejecting bad status code 2: ' + res.statusCode);
       }
   });
 
@@ -126,7 +126,7 @@ function likeMessage(conversation_id, message_id) {
 
   botReq = HTTPS.request(options, function(res) {
       if(res.statusCode != 200) {
-        console.log('rejecting bad status code ' + res.statusCode);
+        console.log('rejecting bad status code 3: ' + res.statusCode);
       }
   });
 
